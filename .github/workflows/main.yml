@@ -16,7 +16,7 @@ jobs:
         run : ls
 
 
-        uses: actions/checkout@v3
+      -  uses: actions/checkout@v3
 
       - name: "check after"
         run : ls
