@@ -1,1 +1,24 @@
 
+# Trigger Action again
+name: Publish Docker Image
+
+on:
+  push:
+    branches:
+      - master
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: "check before"
+        run : ls
+
+
+        uses: actions/checkout@v3
+
+      - name: "check after"
+        run : ls
+
+        
