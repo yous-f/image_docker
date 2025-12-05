@@ -12,16 +12,30 @@
 # RUN g++ main.cpp -o myapp
 
 # CMD ["./myapp"]
-FROM ubuntu:22.04
+# FROM ubuntu:22.04
 
-RUN apt-get update && apt-get install -y g++
+# RUN apt-get update && apt-get install -y g++
+
+# WORKDIR /app
+
+# COPY main.cpp .
+
+# RUN g++ main.cpp -o myapp
+
+# CMD ["./myapp"]
+FROM python:3.11-slim
 
 WORKDIR /app
 
-COPY main.cpp .
+# لو عندك مكاتب في requirements.txt
+COPY requirements.txt ./
+RUN pip install --no-cache-dir -r requirements.txt || true
 
-RUN g++ main.cpp -o myapp
+# نسخ ملف البايثون
+COPY app.py .
 
-CMD ["./myapp"]
+# أمر التشغيل
+CMD ["python", "app.py"]
+
 
 
