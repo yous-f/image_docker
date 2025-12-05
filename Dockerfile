@@ -28,8 +28,8 @@ FROM python:3.11-slim
 WORKDIR /app
 
 # لو عندك مكاتب في requirements.txt
-COPY requirements.txt ./
-RUN pip install --no-cache-dir -r requirements.txt || true
+# COPY requirements.txt ./
+# RUN pip install --no-cache-dir -r requirements.txt || true
 
 # نسخ ملف البايثون
 COPY app.py .
