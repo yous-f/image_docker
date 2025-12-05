@@ -6,8 +6,10 @@ WORKDIR /app
 
 COPY main.cpp .
 
-RUN cat main.cpp   
+# Print file to verify
+RUN echo "=== CONTENT OF main.cpp ===" && cat main.cpp
 
 RUN g++ main.cpp -o myapp
 
 CMD ["./myapp"]
+
