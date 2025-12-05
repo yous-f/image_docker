@@ -33,22 +33,17 @@
 # # شغل البرنامج
 # CMD ["python", "app.py"]
 # استخدم صورة تعتمد على Ubuntu
-FROM ubuntu:20.04
+# FROM ubuntu:20.04
+FROM alpine:latest
 
-# تثبيت الأدوات اللازمة (g++ و make)
-RUN apt-get update && \
-    apt-get install -y g++ make && \
-    apt-get clean && \
-    rm -rf /var/lib/apt/lists/*
+# Install g++
+RUN apk update && apk add --no-cache g++
 
-# حدد مجلد العمل داخل الكونتينر
-WORKDIR /app
+# Copy project files
+COPY main.cpp .
 
-# انسخ ملفات المشروع إلى مجلد العمل
-COPY . .
+# Compile
+RUN g++ main.cpp -o myapp
 
-# قم بتجميع التطبيق (استبدل main.cpp باسم ملفك الرئيسي)
-RUN g++ -o myapp main.cpp
-
-# شغل البرنامج
+# Run
 CMD ["./myapp"]
