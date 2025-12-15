@@ -1,55 +1,41 @@
-# # FROM ubuntu:22.04
+# FROM ubuntu:22.04
 
-# # RUN apt-get update && apt-get install -y g++
-
-# # WORKDIR /app
-
-# # COPY main.cpp .
-
-# # # Print file to verify
-# # RUN echo "=== CONTENT OF main.cpp ===" && cat main.cpp
-
-# # RUN g++ main.cpp -o myapp
-
-# # CMD ["./myapp"]
-# # FROM ubuntu:22.04
-
-# # RUN apt-get update && apt-get install -y g++
-
-# # WORKDIR /app
-
-# # COPY main.cpp .
-
-# # RUN g++ main.cpp -o myapp
-
-# # CMD ["./myapp"]
-# FROM python:3.11-slim
+# RUN apt-get update && apt-get install -y g++
 
 # WORKDIR /app
 
-# # لو عندك مكاتب في requirements.txt
-# # COPY requirements.txt ./
-# # RUN pip install --no-cache-dir -r requirements.txt || true
+# COPY main.cpp .
 
-# # نسخ ملف البايثون
-# COPY app.py .
+# # Print file to verify
+# RUN echo "=== CONTENT OF main.cpp ===" && cat main.cpp
 
-# # أمر التشغيل
-# CMD ["python", "app.py"]
+# RUN g++ main.cpp -o myapp
 
+# CMD ["./myapp"]
+# FROM ubuntu:22.04
 
+# RUN apt-get update && apt-get install -y g++
 
-FROM python:3.12-slim
+# WORKDIR /app
+
+# COPY main.cpp .
+
+# RUN g++ main.cpp -o myapp
+
+# CMD ["./myapp"]
+FROM python:3.11-slim
 
 WORKDIR /app
 
+# لو عندك مكاتب في requirements.txt
+# COPY requirements.txt ./
+# RUN pip install --no-cache-dir -r requirements.txt || true
 
-COPY . /app
+# نسخ ملف البايثون
+COPY app.py .
 
-
-RUN pip install --no-cache-dir -r requirements.txt
-
-EXPOSE 8000
-
+# أمر التشغيل
 CMD ["python", "app.py"]
+
+
 
