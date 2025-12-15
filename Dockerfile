@@ -38,21 +38,18 @@
 # CMD ["python", "app.py"]
 
 
-# استخدم صورة أساسية
+
 FROM python:3.12-slim
 
-# اعمل مجلد للتطبيق داخل الـ container
 WORKDIR /app
 
-# انسخ ملفات المشروع للـ container
+
 COPY . /app
 
-# ثبّت المتطلبات (لو في ملف requirements.txt)
+
 RUN pip install --no-cache-dir -r requirements.txt
 
-# افتح البورت اللي هيشتغل عليه التطبيق
 EXPOSE 8000
 
-# الأمر اللي هيشتغل لما يبدأ الـ container
 CMD ["python", "app.py"]
 
