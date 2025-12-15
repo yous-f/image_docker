@@ -22,20 +22,39 @@
 
 # RUN g++ main.cpp -o myapp
 
-# CMD ["./myapp"]
-FROM python:3.11-slim
+# # CMD ["./myapp"]
+# FROM python:3.11-slim
 
+# WORKDIR /app
+
+# # لو عندك مكاتب في requirements.txt
+# # COPY requirements.txt ./
+# # RUN pip install --no-cache-dir -r requirements.txt || true
+
+# # نسخ ملف البايثون
+# COPY app.py .
+
+# # أمر التشغيل
+# CMD ["python", "app.py"]
+
+# استخدم صورة أساسية
+FROM python:3.12-slim
+
+# اعمل مجلد للتطبيق داخل الـ container
 WORKDIR /app
 
-# لو عندك مكاتب في requirements.txt
-# COPY requirements.txt ./
-# RUN pip install --no-cache-dir -r requirements.txt || true
-
-# نسخ ملف البايثون
+# انسخ ملفات المشروع للـ container
 COPY app.py .
 
-# أمر التشغيل
+# ثبّت المتطلبات (لو في ملف requirements.txt)
+RUN pip install --no-cache-dir -r requirements.txt
+
+# افتح البورت اللي هيشتغل عليه التطبيق
+EXPOSE 8000
+
+# الأمر اللي هيشتغل لما يبدأ الـ container
 CMD ["python", "app.py"]
+
 
 
 
